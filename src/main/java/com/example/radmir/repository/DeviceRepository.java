@@ -1,6 +1,6 @@
-package repository;
+package com.example.radmir.repository;
 
-import model.entity.Device;
+import com.example.radmir.model.entity.Device;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
