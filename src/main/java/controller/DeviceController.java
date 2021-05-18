@@ -2,10 +2,7 @@ package controller;
 
 import lombok.RequiredArgsConstructor;
 import model.entity.Device;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import service.DeviceService;
 
 @RestController
@@ -15,8 +12,8 @@ public class DeviceController {
 
     private final DeviceService deviceService;
 
-    @GetMapping
-    public Device getDeviceById(@RequestParam("id")Long id){
+    @GetMapping("device/{id}")
+    public Device getDeviceById(@PathVariable("id")Long id){
         return deviceService.getDeviceById(id);
     }
 }
