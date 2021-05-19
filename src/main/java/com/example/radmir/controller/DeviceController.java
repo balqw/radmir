@@ -10,12 +10,12 @@ import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("api")
+@RequestMapping("api/device")
 public class DeviceController {
 
     private final DeviceService deviceService;
 
-    @GetMapping("/device/{id}")
+    @GetMapping("/{id}")
     public Device getDeviceById(@PathVariable Long id) {
         return deviceService.getDeviceById(id);
     }
@@ -25,18 +25,18 @@ public class DeviceController {
         return deviceService.getDevices();
     }
 
-    @PutMapping("/device/edit/{id}")
+    @PutMapping("/{id}")
     public Device editDevice(@PathVariable("id") Long id, @RequestBody Device device){
         device.setSerialNum(id);
         return deviceService.editDeviceById(device);
     }
 
-    @PostMapping("/device")
+    @PostMapping()
     public Device createDevice(@RequestBody Device device){
         return deviceService.saveDevice(device);
     }
 
-    @DeleteMapping("device/delete/{id}")
+    @DeleteMapping("/{id}")
     public void deleteDeviceById(@PathVariable("id") Long id){
         deviceService.deleteDeviceById(id);
     }
