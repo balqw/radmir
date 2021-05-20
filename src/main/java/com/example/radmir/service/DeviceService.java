@@ -7,6 +7,7 @@ import org.springframework.context.annotation.PropertySource;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 import static java.lang.String.format;
@@ -17,10 +18,10 @@ import static java.lang.String.format;
 public class DeviceService {
 
     private final DeviceRepository deviceRepository;
-    @Value("${time}")
-    Integer hour;
-    @Value("${measure}")
-    Long measure;
+    @Value("${thresholdTime}")
+    private String thresholdTime;
+    @Value("${thresholdMeasure}")
+    private Long measure;
 
     public Device getDeviceById(Long id){
         return deviceRepository.findById(id).orElseThrow(()->new IllegalArgumentException(format("no device found with serial =%d",id)));
@@ -44,7 +45,8 @@ public class DeviceService {
     }
 
     public List<Device>getBrokenDevices(){
-        LocalDateTime time = LocalDateTime.now().minusHours(hour);
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm");
+        LocalDateTime time = LocalDateTime.parse(thresholdTime,dtf);
         return deviceRepository.findDevicesByLastResponseLessThanOrVolumeMeasuresLessThan(measure,time);
     }
 
