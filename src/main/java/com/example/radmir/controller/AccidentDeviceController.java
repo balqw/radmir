@@ -17,7 +17,7 @@ public class AccidentDeviceController {
     private final DeviceService deviceService;
 
     @GetMapping
-    public List<Device> getBrokenDevices(){
+    public List<Device> getProblemDevice(){
         return deviceService.getBrokenDevices();
     }
 
