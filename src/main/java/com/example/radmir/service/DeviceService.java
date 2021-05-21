@@ -2,23 +2,24 @@ package com.example.radmir.service;
 import com.example.radmir.config.ConfigProperties;
 import com.example.radmir.model.Device;
 import com.example.radmir.repository.DeviceRepository;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.time.Duration;
+
 import java.time.LocalDateTime;
 import java.util.List;
 
 import static java.lang.String.format;
 
 @Service
+@RequiredArgsConstructor
 public class DeviceService {
 
-    @Autowired
-    private  DeviceRepository deviceRepository;
-    @Autowired
-    private  ConfigProperties properties;
+    private final   DeviceRepository deviceRepository;
+
+    private final ConfigProperties properties;
 
     @Transactional
     public Device getDeviceById(Long id){
@@ -43,8 +44,9 @@ public class DeviceService {
     }
     @Transactional
     public List<Device>getBrokenDevices(){
-
-        LocalDateTime time = LocalDateTime.now().minus(properties.getThresholdHours());
+        System.out.println(LocalDateTime.now());
+        System.out.println(LocalDateTime.now().minus(properties.getThresholdTime()));
+        LocalDateTime time = LocalDateTime.now().minus(properties.getThresholdTime());
         return deviceRepository.findDevicesByLastResponseLessThanOrVolumeMeasuresLessThan(time, properties.getThresholdMeasures());
     }
 

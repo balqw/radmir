@@ -11,6 +11,6 @@ import java.time.Duration;
 @ConfigurationProperties(prefix = "device")
 @Data
 public class ConfigProperties {
-   private Duration thresholdHours;
+   private Duration thresholdTime;
    private Long thresholdMeasures;
 }
