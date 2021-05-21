@@ -1,8 +1,7 @@
 package com.example.radmir.service;
 import com.example.radmir.config.ConfigProperties;
-import com.example.radmir.model.entity.Device;
+import com.example.radmir.model.Device;
 import com.example.radmir.repository.DeviceRepository;
-import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.time.LocalDateTime;
@@ -41,7 +40,7 @@ public class DeviceService {
     }
 
     public List<Device>getBrokenDevices(){
-        LocalDateTime time = LocalDateTime.now().minusHours(properties.getThresholdHours());
+        LocalDateTime time = LocalDateTime.now().minus(properties.getThresholdHours());
         return deviceRepository.findDevicesByLastResponseLessThanOrVolumeMeasuresLessThan(time, properties.getThresholdMeasures());
     }
 

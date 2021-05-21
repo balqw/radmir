@@ -1,6 +1,6 @@
 package com.example.radmir.controller;
 
-import com.example.radmir.model.entity.Device;
+import com.example.radmir.model.Device;
 import com.example.radmir.service.DeviceService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;

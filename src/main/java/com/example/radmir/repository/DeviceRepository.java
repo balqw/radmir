@@ -1,6 +1,6 @@
 package com.example.radmir.repository;
 
-import com.example.radmir.model.entity.Device;
+import com.example.radmir.model.Device;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import org.springframework.data.repository.query.Param;
